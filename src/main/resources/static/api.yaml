@@ -95,6 +95,12 @@ paths:
               $ref: '#/components/schemas/CustomerDTO'
         required: true
       responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDTO'
         '405':
           description: Invalid input
     delete:
@@ -112,8 +118,117 @@ paths:
             type: integer
             format: int64
       responses:
+        '204':
+          description: Customer deleted successfully
         '400':
           description: Invalid customer id value
+  # Add an address to a customer
+  /customers/{customerId}/addresses:
+    post:
+      tags:
+        - customer
+        - address
+      summary: Add an address to a customer
+      description: Add an address to a customer
+      operationId: addCustomerAddress
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDTO'
+      responses:
+        201:
+          description: Address added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+  # Get home address of a customer
+  /customers/{customerId}/addresses?type=home:
+    get:
+      summary: Get home address of a customer
+      operationId: getCustomerHomeAddress
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        404:
+          description: Home address not found
+  # Update a customer address
+  /customers/{customerId}/addresses/{addressId}:
+    put:
+      summary: Update a customer address
+      operationId: updateCustomerAddress
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: addressId
+          in: path
+          description: ID of address to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDTO'
+      responses:
+        201:
+          description: Address updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+  # Delete a customer address
+    delete:
+      summary: Delete a customer address
+      operationId: deleteCustomerAddress
+      parameters:
+        - name: customerId
+          in: path
+          description: ID of customer to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: addressId
+          in: path
+          description: ID of address to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        204:
+          description: Address deleted successfully
 components:
   schemas:
     CustomerDTO:

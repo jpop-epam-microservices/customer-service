@@ -27,4 +27,16 @@ public class CustomerService {
         customer.getAddresses().forEach(address -> address.setCustomer(customer));
         return customerMapper.fromCustomer(customerRepository.save(customer));
     }
+
+    public CustomerDTO getCustomerById(Long customerId) {
+
+        return null;
+    }
+
+    public CustomerDTO updateCustomer(Long customerId, CustomerDTO customer) {
+        return null;
+    }
+
+    public void deleteCustomer(Long customerId) {
+    }
 }
