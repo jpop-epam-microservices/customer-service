@@ -38,7 +38,7 @@ public class Customer {
     @NotBlank
     private String mobile;
 
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Address> addresses;
 
 }

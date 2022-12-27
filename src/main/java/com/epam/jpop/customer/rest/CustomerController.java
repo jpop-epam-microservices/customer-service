@@ -5,6 +5,7 @@ import com.epam.jpop.customer.model.AddressDTO;
 import com.epam.jpop.customer.model.CustomerDTO;
 import com.epam.jpop.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,13 +45,8 @@ public class CustomerController implements CustomersApi {
     @Override
     public ResponseEntity<CustomerDTO> updateCustomer(Long customerId, CustomerDTO customer) {
         CustomerDTO updatedCustomer = customerService.updateCustomer(customerId, customer);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{customerId}")
-                .buildAndExpand(updatedCustomer.getId())
-                .toUri();
 
-        return ResponseEntity
-                .created(location)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(updatedCustomer);
     }
 
