@@ -12,7 +12,7 @@ paths:
   /customers:
     get:
       tags:
-        - customers
+        - Customer
       summary: Get All Customers
       description: Get All Customers
       operationId: getAllCustomers
@@ -27,7 +27,7 @@ paths:
                   $ref: '#/components/schemas/CustomerDTO'
     post:
       tags:
-        - customers
+        - Customer
       summary: Create a customer
       description: Create a customer
       operationId: createCustomer
@@ -50,7 +50,7 @@ paths:
   /customers/{customerId}:
     get:
       tags:
-        - customer
+        - Customer
       summary: Get a customer by Id
       description: Returns a single customer
       operationId: getCustomerById
@@ -75,7 +75,7 @@ paths:
           description: Customer not found
     put:
       tags:
-        - customer
+        - Customer
       summary: Updates an existing customer
       description: ''
       operationId: updateCustomer
@@ -105,7 +105,7 @@ paths:
           description: Invalid input
     delete:
       tags:
-        - customer
+        - Customer
       summary: Deletes a customer
       description: delete a customer
       operationId: deleteCustomer
@@ -126,8 +126,8 @@ paths:
   /customers/{customerId}/addresses:
     post:
       tags:
-        - customer
-        - address
+        - Customer
+        - Address
       summary: Add an address to a customer
       description: Add an address to a customer
       operationId: addCustomerAddress
@@ -155,6 +155,9 @@ paths:
   # Get home address of a customer
   /customers/{customerId}/addresses?type=home:
     get:
+      tags:
+        - Customer
+        - Address
       summary: Get home address of a customer
       operationId: getCustomerHomeAddress
       parameters:
@@ -177,6 +180,9 @@ paths:
   # Update a customer address
   /customers/{customerId}/addresses/{addressId}:
     put:
+      tags:
+        - Customer
+        - Address
       summary: Update a customer address
       operationId: updateCustomerAddress
       parameters:
@@ -209,6 +215,9 @@ paths:
                 $ref: '#/components/schemas/AddressDTO'
   # Delete a customer address
     delete:
+      tags:
+        - Customer
+        - Address
       summary: Delete a customer address
       operationId: deleteCustomerAddress
       parameters:
@@ -257,6 +266,10 @@ components:
     AddressDTO:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
+          example: 100000
         street:
           type: string
           example: 437 Lytton
