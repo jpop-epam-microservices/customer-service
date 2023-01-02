@@ -1,4 +1,4 @@
-package com.epam.jpop.customerservice;
+package com.epam.jpop.customer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
