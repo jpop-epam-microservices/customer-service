@@ -1,4 +1,4 @@
-package com.epam.jpop.customerservice;
+package com.epam.jpop.customer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
